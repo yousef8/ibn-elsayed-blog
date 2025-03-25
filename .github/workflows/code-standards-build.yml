@@ -1,0 +1,33 @@
+name: Code Standards & Tests & Build
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+    paths:
+      - "src/**"
+      - "public/**"
+      - "astro.config.ts"
+      - "tsconfig.json"
+      - "eslint.config.mjs"
+      - "remark-collapse.d.ts"
+
+jobs:
+  code_quality:
+    strategy:
+      matrix:
+        node-versions: [20]
+    uses: ./.github/workflows/code-standards-checks.yml
+    with:
+      node-version: ${{ matrix.node-versions }}
+      run-build: true
+
+  unit-tests:
+    uses: ./.github/workflows/tests.yml
+    with:
+      node-version: "20"
