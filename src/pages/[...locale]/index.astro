@@ -1,14 +1,11 @@
 ---
-import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Card from "@/components/Card.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import Hr from "@/components/Hr.astro";
 import LinkButton from "@/components/LinkButton.astro";
-import Socials from "@/components/Socials.astro";
 import { SITE } from "@/config";
-import { SOCIALS } from "@/constants";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/i18n/config";
 import { getRelativeLocalePath, translateFor } from "@/i18n/utils";
 import Layout from "@/layouts/Layout.astro";
@@ -38,55 +35,6 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     data-layout="index"
     data-backurl={getRelativeLocalePath(locale, "/")}
   >
-    <section id="hero" class="pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
-      </h1>
-      <a
-        target="_blank"
-        href={getRelativeLocalePath(Astro.currentLocale, "/rss.xml")}
-        class="inline-block"
-        aria-label={t("a11y.rssFeed")}
-        title={t("rssFeed")}
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3"
-        />
-        <span class="sr-only">{t("rssFeed")}</span>
-      </a>
-
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check
-        <LinkButton
-          class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t("socialLinks")}:
-            </div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <Hr />
-
     {
       featuredPosts.length > 0 && (
         <>
