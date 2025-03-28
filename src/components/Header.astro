@@ -1,5 +1,6 @@
 ---
 import Hr from "./Hr.astro";
+import IconRss from "@/assets/icons/IconRss.svg";
 import IconX from "@/assets/icons/IconX.svg";
 import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
@@ -45,12 +46,30 @@ const isActive = (path: string) => {
       id="top-nav-wrap"
       class="relative flex w-full items-baseline justify-between bg-background p-4 sm:items-center sm:py-6"
     >
-      <a
-        href={getRelativeLocalePath(currentLocale, "/")}
-        class="absolute py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"
-      >
-        {t("site.title")}
-      </a>
+      <div class="absolute flex items-center">
+        <a
+          href={getRelativeLocalePath(currentLocale, "/")}
+          class="py-1 text-2xl leading-7 font-semibold whitespace-nowrap sm:static"
+        >
+          {t("site.title")}
+        </a>
+
+        <a
+          target="_blank"
+          href={getRelativeLocalePath(Astro.currentLocale, "/rss.xml")}
+          class="ms-1 inline-block"
+          aria-label={t("a11y.rssFeed")}
+          title={t("rssFeed")}
+        >
+          <IconRss
+            width={20}
+            height={20}
+            class="stroke-accent stroke-2 rtl:rotate-270"
+          />
+          <span class="sr-only">{t("rssFeed")}</span>
+        </a>
+      </div>
+
       <nav
         id="nav-menu"
         class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"
