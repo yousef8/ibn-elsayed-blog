@@ -21,6 +21,7 @@ export const localeToProfile = {
     langTag: "ar-EG", // Extremly important used in localizing dates, numbers and sitemap,  only English alphabet and hyphen allowed
     direction: "rtl", // UI layout direction
     googleFontName: "Cairo", // For OG image generation, font must support 400 and 700 weights, write name as it should goes in a URL, words separated with '+' instead of spaces
+    default: true,
   },
   en: {
     name: "English",
@@ -28,7 +29,6 @@ export const localeToProfile = {
     langTag: "en-US",
     direction: "ltr",
     googleFontName: "IBM+Plex+Mono",
-    default: true,
   },
 } satisfies Record<string, LocaleProfile>;
 
