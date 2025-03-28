@@ -5,7 +5,6 @@ import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
-import IconPinterest from "@/assets/icons/IconPinterest.svg";
 import { translateFor } from "@/i18n/utils";
 
 type Translator = ReturnType<typeof translateFor>;
@@ -13,25 +12,19 @@ type Translator = ReturnType<typeof translateFor>;
 export const SOCIALS = [
   {
     name: "Github",
-    href: "https://github.com/yousef8/astro-paper-i18n",
+    href: "https://github.com/yousef8",
     linkTitle: (t: Translator) => t("socials.github"),
     icon: IconGitHub,
   },
   {
-    name: "X",
-    href: "https://x.com/username",
-    linkTitle: (t: Translator) => t("socials.x"),
-    icon: IconBrandX,
-  },
-  {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/username/",
+    href: "https://www.linkedin.com/in/el-yousef/",
     linkTitle: (t: Translator) => t("socials.linkedin"),
     icon: IconLinkedin,
   },
   {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
+    href: "mailto:yousef4511@outlook.com",
     linkTitle: (t: Translator) => t("socials.mail"),
     icon: IconMail,
   },
@@ -61,12 +54,6 @@ export const SHARE_LINKS = [
     href: "https://t.me/share/url?url=",
     linkTitle: (t: Translator) => t("sharePost.via", { media: "Telegram" }),
     icon: IconTelegram,
-  },
-  {
-    name: "Pinterest",
-    href: "https://pinterest.com/pin/create/button/?url=",
-    linkTitle: (t: Translator) => t("sharePost.on", { media: "Pinterest" }),
-    icon: IconPinterest,
   },
   {
     name: "Mail",
