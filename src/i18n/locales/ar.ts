@@ -1,8 +1,8 @@
 import type { I18nStrings } from "@/i18n/types";
 
 const baseStrings = {
-  "site.title": "استرو بيبر مترجم",
-  "site.desc": "ثيمة متفرعة من استروبيبر مع دعم للترجمة",
+  "site.title": "ابن السيد",
+  "site.desc": "مساحة لمشاركة أفكارى",
 };
 
 const ARLocale: I18nStrings = {
