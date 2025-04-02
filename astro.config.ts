@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
-import remarkCollapse from "remark-collapse";
 import { SITE } from "./src/config";
 import {
   DEFAULT_LOCALE,
@@ -35,7 +34,6 @@ export default defineConfig({
             "(table[ -]of[ -])?contents?|toc|محتويات|المحتويات|جدول المحتويات",
         },
       ],
-      [remarkCollapse, { test: "Table of contents" }],
     ],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
