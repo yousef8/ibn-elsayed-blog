@@ -7,19 +7,18 @@
 :root,
 html[data-theme="light"] {
   --background: #f9f6f0;
-  --foreground: #000;
-  --accent: #d4a017;
+  --foreground: #1e1a14;
+  --accent: #ff6b01;
   --muted: #ede5d6;
   --border: #d1c7b2;
 }
 
 html[data-theme="dark"] {
   --background: #1e1e1e;
-  --foreground: #fff;
-  --accent: #ffc83d;
+  --foreground: #e8e0d0;
+  --accent: #ff6b01;
   --muted: #252525;
   --border: #3a3325;
-  --royal-shade: #c9971b;
 }
 
 @theme inline {
