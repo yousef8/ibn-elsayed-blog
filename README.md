@@ -213,9 +213,9 @@ export const localeToProfile = {
 
 Same [commands as in original theme](https://github.com/satnaing/astro-paper/tree/main?tab=readme-ov-file#-commands) with addition to
 
-| Command              | Action                                                                                      |
-| :------------------- | :------------------------------------------------------------------------------------------ |
-| `pnpm test`           | Run all unit tests once and exit [learn more](https://vitest.dev/guide/cli.html#vitest-run) |
+| Command           | Action                                                                                      |
+| :---------------- | :------------------------------------------------------------------------------------------ |
+| `pnpm test`       | Run all unit tests once and exit [learn more](https://vitest.dev/guide/cli.html#vitest-run) |
 | `pnpm test:watch` | Run unit tests in watch mode [learn more](https://vitest.dev/guide/cli.html#vitest-watch)   |
 | `pnpm coverage`   | Generate unit testing coverage report [learn more](https://vitest.dev/guide/coverage.html)  |
 
