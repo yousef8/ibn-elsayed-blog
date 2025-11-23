@@ -3,7 +3,7 @@ name: Deploy to Github Pages
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - ".github/workflows/deploy.yml"
       - "src/**"
@@ -12,6 +12,7 @@ on:
       - "tsconfig.json"
       - "eslint.config.mjs"
       - "remark-collapse.d.ts"
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -27,4 +28,32 @@ jobs:
     uses: ./.github/workflows/code-standards-checks.yml
 
   unit-tests:
+    needs: code_quality
     uses: ./.github/workflows/tests.yml
+
+  build:
+    needs: unit-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v5
+      - name: Install, build, and upload your site
+        uses: withastro/action@v5
+        # with:
+        # path: . # The root location of your Astro project inside the repository. (optional)
+        # node-version: 24 # The specific version of Node that should be used to build your site. Defaults to 22. (optional)
+        # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+        # build-cmd: pnpm run build # The command to run to build your site. Runs the package build script/task by default. (optional)
+        # env:
+        # PUBLIC_POKEAPI: 'https://pokeapi.co/api/v2' # Use single quotation marks for the variable value. (optional)
+        #
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

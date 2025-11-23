@@ -12,6 +12,7 @@ import {
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
+  base: "/ibn-elsayed-blog",
   i18n: {
     locales: SUPPORTED_LOCALES,
     defaultLocale: DEFAULT_LOCALE,
