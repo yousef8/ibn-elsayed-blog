@@ -3,7 +3,7 @@ name: Code Standards & Tests & Build
 on:
   pull_request:
     branches:
-      - main
+      - master
     types:
       - opened
       - edited

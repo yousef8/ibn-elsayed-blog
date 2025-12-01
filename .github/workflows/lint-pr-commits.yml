@@ -3,7 +3,7 @@ name: Lint PR Commits
 on:
   pull_request:
     branches:
-      - main
+      - master
     types:
       - opened
       - edited
