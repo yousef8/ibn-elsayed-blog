@@ -16,12 +16,9 @@
     "test:watch": "vitest",
     "coverage": "vitest run --coverage"
   },
-  "volta": {
-    "node": "20.19.0",
-    "pnpm": "10.6.5"
-  },
   "engines": {
-    "node": "20.19.0"
+    "node": "24.11.1",
+    "pnpm": "10.6.5"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",
