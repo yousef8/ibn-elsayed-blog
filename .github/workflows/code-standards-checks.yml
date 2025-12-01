@@ -3,9 +3,6 @@ name: Code Standards & Quality
 on:
   workflow_call:
     inputs:
-      node-version:
-        type: string
-        default: "20"
       run-build:
         type: boolean
         default: false
@@ -23,12 +20,12 @@ jobs:
       - name: "📦 Install pnpm"
         uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 10.6.5
 
-      - name: 🔧 Setup Node.js ${{ inputs.node-version }}
+      - name: 🔧 Setup Node.js 24.11.1
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ inputs.node-version }}
+          node-version: 24.11.1
           cache: "pnpm"
 
       - name: 📦 Install dependencies

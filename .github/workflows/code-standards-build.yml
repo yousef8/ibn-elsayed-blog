@@ -19,15 +19,9 @@ on:
 
 jobs:
   code_quality:
-    strategy:
-      matrix:
-        node-versions: [20]
     uses: ./.github/workflows/code-standards-checks.yml
     with:
-      node-version: ${{ matrix.node-versions }}
       run-build: true
 
   unit-tests:
     uses: ./.github/workflows/tests.yml
-    with:
-      node-version: "20"
