@@ -5,6 +5,7 @@ import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import Hr from "@/components/Hr.astro";
 import LinkButton from "@/components/LinkButton.astro";
+import PoemBanner from "@/components/PoemBanner.astro";
 import { SITE } from "@/config";
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/i18n/config";
 import { getRelativeLocalePath, translateFor } from "@/i18n/utils";
@@ -30,6 +31,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 <Layout>
   <Header />
+  <PoemBanner />
   <main
     id="main-content"
     data-layout="index"
