@@ -1,35 +1,16 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
+Since I was young, I’ve always had a strong love for making things. I enjoyed everything handmade, whether it was cooking or simple crafts. And when I discovered the world of programming, I instantly fell in love with it.
 
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
+After graduating, I was fortunate to receive a 9-month scholarship at the Information Technology Institute (ITI), where I specialized in back-end development using Node.js. Since then, this has become both my career and my professional passion.
 
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
+I created this website to be my personal space on the internet — where I write my thoughts, document my journey in the tech world, and share my personal projects and everything I learn along the way.
 
-<div>
-  <img src="/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
-</div>
+### Contact Me
 
-## Tech Stack
+You can reach out if you’d like to ask about anything through:
 
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
-
-## Features
-
-Here are certain features of this site.
-
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
-
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+- 📬 [yousef.elsayed.ghonim@gmail.com](mailto:yousef.elsayed.ghonim@gmail.com)
+- 💼 [LinkedIn](https://www.linkedin.com/in/el-yousef/)
