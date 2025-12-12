@@ -14,7 +14,8 @@
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "type-check": "astro check"
   },
   "engines": {
     "node": "24.11.1",
