@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import { getPath } from "@/utils/getPath";
 import Datetime from "./Datetime.astro";
 import { getRelativeLocalePath } from "@/i18n/utils";
+import { Image } from "astro:assets";
 
 export interface Props extends CollectionEntry<"blog"> {
   variant?: "h2" | "h3";
@@ -11,7 +12,7 @@ export interface Props extends CollectionEntry<"blog"> {
 
 const { variant = "h2", data, id, filePath } = Astro.props;
 
-const { title, description, pubDatetime, modDatetime, timezone } = data;
+const { title, description, pubDatetime, modDatetime, timezone, cover } = data;
 
 const headerProps = {
   style: { viewTransitionName: slugifyStr(title) },
@@ -21,19 +22,28 @@ const headerProps = {
 const currentLocale = Astro.currentLocale;
 ---
 
-<li class="my-6">
-  <a
-    href={getRelativeLocalePath(currentLocale, getPath(id, filePath))}
-    class="inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
-  >
-    {
-      variant === "h2" ? (
-        <h2 {...headerProps}>{title}</h2>
-      ) : (
-        <h3 {...headerProps}>{title}</h3>
-      )
-    }
-  </a>
-  <Datetime {pubDatetime} {modDatetime} {timezone} />
-  <p>{description}</p>
+<li class="my-6 grid grid-cols-1 items-start gap-4 md:grid-cols-3">
+  <div class="md:col-span-2">
+    <a
+      href={getRelativeLocalePath(currentLocale, getPath(id, filePath))}
+      class="inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
+    >
+      {
+        variant === "h2" ? (
+          <h2 {...headerProps}>{title}</h2>
+        ) : (
+          <h3 {...headerProps}>{title}</h3>
+        )
+      }
+    </a>
+    <Datetime {pubDatetime} {modDatetime} {timezone} />
+    <p>{description}</p>
+  </div>
+  {
+    cover && (
+      <div class="md:col-span-1">
+        <Image src={cover} alt={title} class="w-full rounded-lg" />
+      </div>
+    )
+  }
 </li>
