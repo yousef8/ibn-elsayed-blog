@@ -15,7 +15,7 @@ jobs:
       - name: "📦 Install pnpm"
         uses: pnpm/action-setup@v4
         with:
-          version: 10.6.5
+          version: 10.11.1
 
       - name: 🔧 Setup Node.js 24.11.1
         uses: actions/setup-node@v4
