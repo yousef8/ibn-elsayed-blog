@@ -97,14 +97,6 @@ const isActive = (path: string) => {
         >
           <li class="col-span-3">
             <a
-              href={getRelativeLocalePath(Astro.currentLocale, "/posts/")}
-              class:list={{ "active-nav": isActive("/posts") }}
-            >
-              {t("posts")}
-            </a>
-          </li>
-          <li class="col-span-3">
-            <a
               href={getRelativeLocalePath(Astro.currentLocale, "/tags/")}
               class:list={{ "active-nav": isActive("/tags") }}
             >
