@@ -6,7 +6,6 @@ import Footer from "@/components/Footer.astro";
 import Tag from "@/components/Tag.astro";
 import Datetime from "@/components/Datetime.astro";
 import EditPost from "@/components/EditPost.astro";
-import ShareLinks from "@/components/ShareLinks.astro";
 import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
 import { getPath } from "@/utils/getPath";
@@ -110,27 +109,21 @@ const nextPost =
     >
       {title}
     </h1>
-    <div class="flex items-center gap-4">
+    <div class="">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" class="my-2" />
-      <EditPost class="max-sm:hidden" {hideEditPost} {post} />
+      <EditPost {hideEditPost} {post} />
+      <ul>
+        {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} />)}
+      </ul>
     </div>
+
     <article id="article" class="mx-auto prose mt-8 max-w-app">
       <Content />
     </article>
 
-    <hr class="my-8 border-dashed" />
-
-    <EditPost class="sm:hidden" {hideEditPost} {post} />
-
-    <ul class="mt-4 mb-8 sm:my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} />)}
-    </ul>
-
     <BackToTopButton />
 
-    <ShareLinks />
-
-    <hr class="my-6 border-dashed" />
+    {(prevPost || nextPost) && <hr class="my-6 border-dashed" />}
 
     <!-- Previous/Next Post Buttons -->
     <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
