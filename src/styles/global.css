@@ -8,6 +8,7 @@
 html[data-theme="light"] {
   --background: #fdf9ee;
   --foreground: #323239;
+  --heading: #1d1d22;
   --accent: #0ea5e9;
   --muted: #f5efdf;
   --border: #d9ccaf;
@@ -16,6 +17,7 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   --background: #1e1e1e;
   --foreground: #c8c8cf;
+  --heading: #fbfbfb;
   --accent: #0ea5e9;
   --muted: #303030;
   --border: #3f3f48;
@@ -24,6 +26,7 @@ html[data-theme="dark"] {
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-heading: var(--heading);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-border: var(--border);
