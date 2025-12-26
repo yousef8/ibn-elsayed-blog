@@ -1,7 +1,6 @@
 import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
-import remarkToc from "remark-toc";
 import { SITE } from "./src/config";
 import {
   DEFAULT_LOCALE,
@@ -26,15 +25,7 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [
-      [
-        remarkToc,
-        {
-          heading:
-            "(table[ -]of[ -])?contents?|toc|محتويات|المحتويات|جدول المحتويات",
-        },
-      ],
-    ],
+    remarkPlugins: [],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
       themes: { light: "catppuccin-latte", dark: "one-dark-pro" },

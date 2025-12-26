@@ -46,17 +46,12 @@
   tfoot td:first-child {
     padding-inline-start: 0.5714286em !important;
   }
-  .prose h2#table-of-contents {
-    @apply mb-2;
-  }
+
   .prose details {
     @apply inline-block cursor-pointer text-foreground select-none;
   }
   .prose summary {
     @apply focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent focus-visible:outline-dashed;
-  }
-  .prose h2#table-of-contents + p {
-    @apply hidden;
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
