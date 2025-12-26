@@ -6,19 +6,19 @@
 
 :root,
 html[data-theme="light"] {
-  --background: #f9f6f0;
-  --foreground: #1e1a14;
-  --accent: #ff6b01;
-  --muted: #ede5d6;
-  --border: #d1c7b2;
+  --background: #fdf9ee;
+  --foreground: #323239;
+  --accent: #0ea5e9;
+  --muted: #f5efdf;
+  --border: #d9ccaf;
 }
 
 html[data-theme="dark"] {
   --background: #1e1e1e;
-  --foreground: #e8e0d0;
-  --accent: #ff6b01;
-  --muted: #252525;
-  --border: #3a3325;
+  --foreground: #c8c8cf;
+  --accent: #0ea5e9;
+  --muted: #303030;
+  --border: #3f3f48;
 }
 
 @theme inline {
