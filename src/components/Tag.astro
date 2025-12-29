@@ -14,26 +14,24 @@ const { tag, tagName, size = "sm" } = Astro.props;
 <li
   class:list={[
     "group inline-block group-hover:cursor-pointer",
-    size === "sm" ? "my-1 underline-offset-4" : "mx-1 my-3 underline-offset-8",
+    size === "sm" ? "my-1" : "mx-1 my-3",
   ]}
 >
   <a
     href={getRelativeLocalePath(Astro.currentLocale, `/tags/${tag}/`)}
     transition:name={tag}
     class:list={[
-      "relative pe-2 text-lg group-hover:text-accent focus-visible:p-1",
-      { "text-sm": size === "sm" },
+      "inline-flex items-center gap-1 rounded-md border bg-muted text-foreground transition-colors duration-300 group-hover:border-accent group-hover:text-accent",
+      { "border border-border px-2 py-1 text-sm": size === "sm" },
+      { "border-2 border-border px-3 py-2 text-lg": size === "lg" },
     ]}
   >
     <IconHash
       class:list={[
-        "inline-block opacity-80",
-        { "-me-3.5 size-4 rtl:ms-0.5 rtl:me-0": size === "sm" },
-        { "-me-5 size-6 rtl:ms-1 rtl:me-0": size === "lg" },
+        "inline-block opacity-80 transition-colors duration-300",
+        { "size-4": size === "sm" },
+        { "size-6": size === "lg" },
       ]}
-    /><span
-      class="relative inline-block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-100 after:bg-accent after:transition-transform after:duration-300 after:ease-in-out after:content-[''] group-hover:after:animate-[underlineBounce_0.6s_ease-in-out] rtl:after:origin-right"
-      >{tagName}</span
-    >
+    /><span>{tagName}</span>
   </a>
 </li>
