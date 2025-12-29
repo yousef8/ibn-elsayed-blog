@@ -54,6 +54,23 @@
     @apply focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent focus-visible:outline-dashed;
   }
 
+  /* ===== Heading Anchor Links ===== */
+  .prose :is(h1, h2, h3, h4, h5, h6) {
+    @apply relative;
+  }
+
+  .prose .heading-anchor {
+    @apply absolute start-auto end-full top-1/2 -translate-y-1/2 opacity-100 transition-opacity duration-200 sm:opacity-0;
+  }
+
+  .prose :is(h1, h2, h3, h4, h5, h6):hover .heading-anchor {
+    @apply opacity-100;
+  }
+
+  .heading-anchor-icon {
+    @apply h-4 w-4 text-accent sm:h-5 sm:w-5;
+  }
+
   /* ===== Code Blocks & Syntax Highlighting ===== */
   pre:has(code) {
     @apply border border-border;

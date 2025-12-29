@@ -1,6 +1,8 @@
-import { defineConfig, envField } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig, envField } from "astro/config";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 import { SITE } from "./src/config";
 import {
   DEFAULT_LOCALE,
@@ -26,6 +28,51 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [],
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "prepend",
+          properties: {
+            ariaLabel: "Link to this section",
+            className: "heading-anchor",
+          },
+          content: {
+            type: "element",
+            tagName: "svg",
+            properties: {
+              className: "heading-anchor-icon",
+              xmlns: "http://www.w3.org/2000/svg",
+              width: 24,
+              height: 24,
+              viewBox: "0 0 24 24",
+              fill: "none",
+              stroke: "currentColor",
+              strokeWidth: 2,
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+            },
+            children: [
+              {
+                type: "element",
+                tagName: "path",
+                properties: {
+                  d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71",
+                },
+              },
+              {
+                type: "element",
+                tagName: "path",
+                properties: {
+                  d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71",
+                },
+              },
+            ],
+          },
+        },
+      ],
+    ],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
       themes: { light: "catppuccin-latte", dark: "one-dark-pro" },
