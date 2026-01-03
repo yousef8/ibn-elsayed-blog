@@ -15,21 +15,12 @@ const about = await getAboutForLocale(locale);
 
 let Content;
 
-let frontmatter: { title: string; description?: string } = {
-  title: "",
-};
-
 if (about) {
   const rendered = await render(about);
   Content = rendered.Content;
-
-  frontmatter = {
-    title: about.data.title,
-    description: about.data.description,
-  };
 }
 ---
 
-<AboutLayout frontmatter={frontmatter}>
+<AboutLayout>
   {Content ? <Content /> : <p />}
 </AboutLayout>

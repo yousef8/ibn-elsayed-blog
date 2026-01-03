@@ -4,13 +4,6 @@ import Footer from "@/components/Footer.astro";
 import Layout from "./Layout.astro";
 import { translateFor } from "@/i18n/utils";
 
-export interface Props {
-  frontmatter: {
-    title: string;
-    description?: string;
-  };
-}
-
 const t = translateFor(Astro.currentLocale);
 
 const siteTitle = t("site.title");
