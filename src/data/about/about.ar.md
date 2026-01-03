@@ -12,5 +12,5 @@ title: "عنى"
 
 ممكن تتواصل معايا لو حابب تسألنى عن أي حاجة من خلال:
 
-- 📬 yousef.elsayed.ghonim@gmail.com
+- 📬 <yousef.elsayed.ghonim@gmail.com>
 - 💼 [LinkedIn](https://www.linkedin.com/in/el-yousef/)
