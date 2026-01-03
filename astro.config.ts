@@ -1,3 +1,4 @@
+import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField } from "astro/config";
@@ -25,6 +26,7 @@ export default defineConfig({
         locales: LOCALES_TO_LANG,
       },
     }),
+    mdx(),
   ],
   markdown: {
     remarkPlugins: [],

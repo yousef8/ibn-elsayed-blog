@@ -22,6 +22,7 @@
     "pnpm": "10.11.1"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
     "@resvg/resvg-js": "^2.6.2",
