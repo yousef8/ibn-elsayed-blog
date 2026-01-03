@@ -10,7 +10,7 @@ const ARLocale: I18nStrings = {
   copy: "نسخ",
   copied: "تم النسخ",
   by: "بواسطة",
-  about: "عنى",
+  about: "ترجمتي",
   socialLinks: "تابعنى على",
   home: "الصفحة الرئيسية",
   posts: "المقالات",
