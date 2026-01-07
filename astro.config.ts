@@ -3,13 +3,17 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField } from "astro/config";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeComponents from "rehype-components";
 import rehypeSlug from "rehype-slug";
+import remarkDirective from "remark-directive";
+import { GithubCard } from "./src/components/rehype/GithubCard";
 import { SITE } from "./src/config";
 import {
   DEFAULT_LOCALE,
   LOCALES_TO_LANG,
   SUPPORTED_LOCALES,
 } from "./src/i18n/config";
+import parseDirectives from "./src/plugins/remark-github-directive";
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,9 +33,17 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    remarkPlugins: [],
+    remarkPlugins: [remarkDirective, parseDirectives],
     rehypePlugins: [
       rehypeSlug,
+      [
+        rehypeComponents,
+        {
+          components: {
+            github: GithubCard,
+          },
+        },
+      ],
       [
         rehypeAutolinkHeadings,
         {
