@@ -11,7 +11,8 @@ export interface Props extends CollectionEntry<"blog"> {
 
 const { variant = "h2", data, id, filePath } = Astro.props;
 
-const { title, description, pubDatetime, modDatetime, timezone } = data;
+const { title, description, pubDatetime, modDatetime, timezone, coverImage } =
+  data;
 
 const headerProps = {
   style: { viewTransitionName: slugifyStr(title) },
@@ -24,18 +25,51 @@ const currentLocale = Astro.currentLocale;
 <li class="my-6">
   <a
     href={getRelativeLocalePath(currentLocale, getPath(id, filePath))}
-    class="card-title inline-block text-lg font-medium text-accent"
+    class="card-container group flex flex-col gap-4 sm:flex-row sm:items-start"
   >
     {
-      variant === "h2" ? (
-        <h2 {...headerProps}>{title}</h2>
-      ) : (
-        <h3 {...headerProps}>{title}</h3>
+      coverImage && (
+        <div class="card-image-wrapper relative shrink-0 overflow-hidden rounded-lg sm:h-32 sm:w-48">
+          <img
+            src={coverImage.src.src}
+            alt={coverImage.alt}
+            class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105 sm:h-full"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="card-overlay absolute inset-0 flex items-center justify-center bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-60">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-accent"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </div>
+        </div>
       )
     }
+    <div class="flex-1">
+      <div class="card-title inline-block text-lg font-medium text-accent">
+        {
+          variant === "h2" ? (
+            <h2 {...headerProps}>{title}</h2>
+          ) : (
+            <h3 {...headerProps}>{title}</h3>
+          )
+        }
+      </div>
+      <Datetime {pubDatetime} {modDatetime} {timezone} />
+      <p>{description}</p>
+    </div>
   </a>
-  <Datetime {pubDatetime} {modDatetime} {timezone} />
-  <p>{description}</p>
 </li>
 
 <style>
@@ -57,8 +91,8 @@ const currentLocale = Astro.currentLocale;
     transition: transform 0.3s ease-in-out;
   }
 
-  .card-title:hover::after,
-  .card-title:focus-visible::after {
+  .card-container:hover .card-title::after,
+  .card-container:focus-visible .card-title::after {
     transform: scaleX(1);
     animation: underlineSweep 0.6s ease-in-out forwards;
   }

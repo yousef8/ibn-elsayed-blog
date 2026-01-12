@@ -1,23 +1,24 @@
 ---
-import { render, type CollectionEntry } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
-import Tag from "@/components/Tag.astro";
-import Datetime from "@/components/Datetime.astro";
-import EditPost from "@/components/EditPost.astro";
-import BackButton from "@/components/BackButton.astro";
-import BackToTopButton from "@/components/BackToTopButton.astro";
-import { getPath } from "@/utils/getPath";
-import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
+import BackButton from "@/components/BackButton.astro";
+import BackToTopButton from "@/components/BackToTopButton.astro";
+import Datetime from "@/components/Datetime.astro";
+import EditPost from "@/components/EditPost.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Tag from "@/components/Tag.astro";
+import { SITE } from "@/config";
 import {
   getRelativeLocalePath,
   getSlugWithoutLocale,
   translateFor,
 } from "@/i18n/utils";
-import { SITE } from "@/config";
+import Layout from "@/layouts/Layout.astro";
+import { getPath } from "@/utils/getPath";
+import { slugifyStr } from "@/utils/slugify";
+import { Image } from "astro:assets";
+import { render, type CollectionEntry } from "astro:content";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -39,6 +40,7 @@ const {
   timezone,
   tags,
   hideEditPost,
+  coverImage,
 } = post.data;
 
 const { Content } = await render(post);
@@ -109,6 +111,17 @@ const nextPost =
     >
       {title}
     </h1>
+    {
+      coverImage && (
+        <Image
+          src={coverImage.src}
+          alt={coverImage.alt}
+          class="mt-6 h-auto w-full rounded-lg"
+          loading="eager"
+          decoding="async"
+        />
+      )
+    }
     <div class="">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" class="my-2" />
       <EditPost {hideEditPost} {post} />
