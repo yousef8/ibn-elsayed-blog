@@ -1,0 +1,165 @@
+---
+/**
+ * Remark42 Comments Component
+ *
+ * This component integrates Remark42 commenting system into blog posts.
+ * It handles:
+ * - Loading Remark42 scripts
+ * - Theme synchronization (light/dark mode)
+ * - RTL support for Arabic locale
+ * - Unique page IDs per locale (so each language version has separate comments)
+ */
+
+import { translateFor } from "@/i18n/utils";
+
+interface Props {
+  /** Unique identifier for the page/post (used to separate comments per language) */
+  pageId: string;
+  /** Page URL for the comment thread */
+  pageUrl?: string;
+  /** Locale for RTL and language support */
+  locale?: string;
+}
+
+const {
+  pageId,
+  pageUrl = Astro.url.href,
+  locale = Astro.currentLocale,
+} = Astro.props;
+
+const t = translateFor(locale);
+
+// Remark42 configuration - update these for production
+const REMARK_URL = import.meta.env.PUBLIC_REMARK_URL || "http://localhost:8080";
+const SITE_ID = import.meta.env.PUBLIC_REMARK_SITE_ID || "ibn-elsayed-blog";
+---
+
+<section
+  class="remark42-comments mt-12"
+  data-remark-url={REMARK_URL}
+  data-site-id={SITE_ID}
+  data-page-id={pageId}
+  data-page-url={pageUrl}
+  data-locale={locale}
+>
+  <h2 class="mb-6 text-xl font-bold text-heading">{t("comments")}</h2>
+
+  <div id="remark42"></div>
+</section>
+
+<script>
+  // Remark42 type declarations
+  interface Remark42Config {
+    host: string | null;
+    site_id: string | null;
+    page_id: string | null;
+    url: string | null;
+    theme: string;
+    locale: string;
+    show_email_subscription: boolean;
+    simple_view: boolean;
+    no_footer: boolean;
+  }
+
+  interface Remark42Instance {
+    destroy: () => void;
+    createInstance: (config: Remark42Config) => void;
+    changeTheme: (theme: string) => void;
+  }
+
+  declare global {
+    interface Window {
+      remark_config?: Remark42Config;
+      REMARK42?: Remark42Instance;
+    }
+  }
+
+  function initRemark42() {
+    const container = document.querySelector(".remark42-comments");
+    if (!container) return;
+
+    const remarkUrl = container.getAttribute("data-remark-url");
+    const siteId = container.getAttribute("data-site-id");
+    const pageId = container.getAttribute("data-page-id");
+    const pageUrl = container.getAttribute("data-page-url");
+    const locale = container.getAttribute("data-locale");
+
+    // Get current theme
+    const theme =
+      document.documentElement.getAttribute("data-theme") || "light";
+
+    // Configure Remark42
+    window.remark_config = {
+      host: remarkUrl,
+      site_id: siteId,
+      page_id: pageId,
+      url: pageUrl,
+      theme: theme,
+      locale: locale === "ar" ? "ar" : "en",
+      show_email_subscription: true,
+      simple_view: false,
+      no_footer: false,
+    };
+
+    // Load Remark42 scripts
+    loadRemark42Scripts(remarkUrl!);
+  }
+
+  function loadRemark42Scripts(remarkUrl: string) {
+    // Check if already loaded
+    if (document.querySelector('script[src*="remark42"]')) {
+      // If scripts exist, just reinitialize
+      if (window.REMARK42) {
+        window.REMARK42.destroy();
+        window.REMARK42.createInstance(window.remark_config!);
+      }
+      return;
+    }
+
+    // Load embed script
+    const embedScript = document.createElement("script");
+    embedScript.src = `${remarkUrl}/web/embed.js`;
+    embedScript.defer = true;
+    document.body.appendChild(embedScript);
+  }
+
+  function updateRemark42Theme() {
+    const theme =
+      document.documentElement.getAttribute("data-theme") || "light";
+
+    if (window.REMARK42) {
+      window.REMARK42.changeTheme(theme);
+    }
+  }
+
+  // Initialize on page load
+  initRemark42();
+
+  // Re-initialize on Astro page transitions
+  document.addEventListener("astro:after-swap", () => {
+    initRemark42();
+  });
+
+  // Listen for theme changes
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      if (mutation.attributeName === "data-theme") {
+        updateRemark42Theme();
+      }
+    });
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+
+  // Also listen for theme button clicks (backup)
+  document.addEventListener("click", e => {
+    const target = e.target as HTMLElement;
+    if (target.closest("#theme-btn")) {
+      // Small delay to let the theme change apply
+      setTimeout(updateRemark42Theme, 50);
+    }
+  });
+</script>

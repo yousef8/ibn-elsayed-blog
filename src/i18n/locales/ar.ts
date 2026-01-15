@@ -42,6 +42,7 @@ const ARLocale: I18nStrings = {
   rssFeed: "تغذية  بواسطة RSS",
   suggestChanges: "اقترح تعديل",
   toggleLightAndDark: "بدل بين الصبح و الليل",
+  comments: "التعليقات",
   "pagination.prev": "السابق",
   "pagination.next": "التالى",
   "footer.text": "حقوق الطبع والنشر © {year} | جميع الحقوق محفوظة",

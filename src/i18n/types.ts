@@ -36,6 +36,7 @@ export interface I18nStrings {
   rssFeed: string;
   suggestChanges: string;
   toggleLightAndDark: string;
+  comments: string;
   "pagination.prev": string;
   "pagination.next": string;
   "footer.text": string;

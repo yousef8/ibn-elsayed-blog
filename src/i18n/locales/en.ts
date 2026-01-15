@@ -42,6 +42,7 @@ const ENLocale: I18nStrings = {
   rssFeed: "RSS Feed",
   suggestChanges: "Suggest Changes",
   toggleLightAndDark: "Toggles light & dark",
+  comments: "Comments",
   "pagination.prev": "Prev",
   "pagination.next": "Next",
   "footer.text": "Copyright © {year} | All rights reserved",

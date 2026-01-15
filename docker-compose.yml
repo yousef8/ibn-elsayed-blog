@@ -1,9 +1,39 @@
 services:
-  app:
-    image: node:lts
+  remark42:
+    image: umputun/remark42:latest
+    container_name: remark42
+    restart: unless-stopped
     ports:
-      - 4321:4321
-    working_dir: /app
-    command: npm run dev -- --host 0.0.0.0
+      - "8080:8080"
+    environment:
+      - REMARK_URL=http://localhost:8080
+      - SITE=ibn-elsayed-blog
+      - SECRET=change-this-secret-in-production
+      - ADMIN_SHARED_EMAIL=yousef4511@outlool.com
+      # Authentication - Anonymous and Email
+      - AUTH_ANON=true
+      - AUTH_EMAIL_ENABLE=true
+      - AUTH_EMAIL_FROM=noreply@localhost
+      - SMTP_HOST=mailhog
+      - SMTP_PORT=1025
+      - NOTIFY_ADMINS=email
+      - NOTIFY_EMAIL_FROM=noreply@localhost
+      # Development settings
+      - DEBUG=true
+      # PROXY_CORS=true disables internal CORS/CSP, letting us handle it externally
+      - PROXY_CORS=true
+      # Use JWT header instead of cookies - avoids cross-origin cookie issues for local dev
+      - AUTH_SEND_JWT_HEADER=true
     volumes:
-      - ./:/app
+      - remark42-data:/srv/var
+
+  # MailHog for local email testing (catches all emails)
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    ports:
+      - "1025:1025"  # SMTP server
+      - "8025:8025"  # Web UI to view emails
+
+volumes:
+  remark42-data:

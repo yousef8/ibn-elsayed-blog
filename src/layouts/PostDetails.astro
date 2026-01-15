@@ -7,6 +7,7 @@ import Datetime from "@/components/Datetime.astro";
 import EditPost from "@/components/EditPost.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import Remark42 from "@/components/Remark42.astro";
 import Tag from "@/components/Tag.astro";
 import { SITE } from "@/config";
 import {
@@ -90,6 +91,10 @@ const currentPostIndex = allPosts.findIndex(a => a.slug === post.id);
 const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost =
   currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
+
+/* ========== Comments Page ID ========== */
+// Create a unique page ID that includes locale for separate comments per language
+const commentPageId = `${Astro.currentLocale}-${post.id}`;
 ---
 
 <Layout {...layoutProps}>
@@ -175,6 +180,9 @@ const nextPost =
         )
       }
     </div>
+
+    <!-- Comments Section -->
+    <Remark42 pageId={commentPageId} />
   </main>
   <Footer />
 </Layout>
