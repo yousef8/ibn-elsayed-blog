@@ -11,7 +11,7 @@ export const SITE = {
   showBackButton: false,
   editPost: {
     enabled: true,
-    url: "https://github.com/yousef8/ibn-elsayed-blog/edit/master/",
+    url: "https://github.com/yousef8/my-blog/edit/master/",
   },
   dynamicOgImage: true,
   lang: "en", // html lang code. Set this empty and default will be "en"
