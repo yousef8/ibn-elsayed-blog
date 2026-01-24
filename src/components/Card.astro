@@ -1,9 +1,10 @@
 ---
-import { slugifyStr } from "@/utils/slugify";
-import type { CollectionEntry } from "astro:content";
-import { getPath } from "@/utils/getPath";
-import Datetime from "./Datetime.astro";
 import { getRelativeLocalePath } from "@/i18n/utils";
+import { getPath } from "@/utils/getPath";
+import { slugifyStr } from "@/utils/slugify";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import Datetime from "./Datetime.astro";
 
 export interface Props extends CollectionEntry<"blog"> {
   variant?: "h2" | "h3";
@@ -30,14 +31,14 @@ const currentLocale = Astro.currentLocale;
     {
       coverImage && (
         <div class="card-image-wrapper relative shrink-0 overflow-hidden rounded-lg sm:h-32 sm:w-48">
-          <img
-            src={coverImage.src.src}
+          <Image
+            src={coverImage.src}
             alt={coverImage.alt}
-            class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105 sm:h-full"
+            class="h-full! w-full object-cover transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
             decoding="async"
           />
-          <div class="card-overlay absolute inset-0 flex items-center justify-center bg-background opacity-0 transition-opacity duration-300 group-hover:opacity-60">
+          <div class="absolute inset-0 flex items-center justify-center bg-background opacity-0 transition-opacity duration-300 group-hover:opacity-60">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
