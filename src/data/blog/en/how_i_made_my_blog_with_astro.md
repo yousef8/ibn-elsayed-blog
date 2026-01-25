@@ -2,8 +2,9 @@
 title: "How I Made My Blog with Astro.js"
 description: "My journey to creating a blog in Arabic"
 pubDatetime: 2026-01-25T22:27:19.695Z
-modDatetime: 2026-01-25T22:57:21.466Z
-coverImage: /src/assets/images/astrojs.png
+modDatetime: 2026-01-25T23:11:14.560Z
+coverImage: /src/assets/covers/how_i_made_my_blog_with_astro.jpg
+ogImage: /src/assets/covers/how_i_made_my_blog_with_astro.jpg
 ---
 
 ## 🧠 Why did I make the website?
