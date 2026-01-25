@@ -16,12 +16,7 @@ const blog = defineCollection({
       draft: z.boolean().optional(),
       tags: z.array(z.string()).default(["others"]),
       ogImage: image().or(z.string()).optional(),
-      coverImage: z
-        .object({
-          src: image(),
-          alt: z.string(),
-        })
-        .optional(),
+      coverImage: image().optional(),
       description: z.string(),
       canonicalURL: z.string().optional(),
       hideEditPost: z.boolean().optional(),

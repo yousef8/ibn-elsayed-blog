@@ -32,8 +32,8 @@ const currentLocale = Astro.currentLocale;
       coverImage && (
         <div class="card-image-wrapper relative shrink-0 overflow-hidden rounded-lg sm:h-32 sm:w-48">
           <Image
-            src={coverImage.src}
-            alt={coverImage.alt}
+            src={coverImage}
+            alt="Blog post cover image"
             class="h-full! w-full object-cover transition-transform duration-300 group-hover:scale-105"
             loading="lazy"
             decoding="async"
