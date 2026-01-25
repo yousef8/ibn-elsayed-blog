@@ -1,4 +1,6 @@
 {
   "*.{js,mjs,cjs,ts,tsx,astro}": ["prettier --write", "eslint --fix"],
-  "*.{json,md,css,html,yaml,yml}": "prettier --write"
+  "*.{json,css,html,yaml,yml}": "prettier --write",
+  "src/data/blog/**/*.md": ["node scripts/update-blog-dates.js", "prettier --write"],
+  "*.md": "prettier --write"
 }
