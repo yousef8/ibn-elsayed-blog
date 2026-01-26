@@ -7,7 +7,7 @@
  * - Files starting with `_` are treated as drafts (skipped)
  * - Files with `draft: true` are skipped
  * - `pubDatetime` is set only once when first publishing (if missing and not a draft)
- * - `modDatetime` is updated on every commit AFTER the post has been published
+ * - `modDatetime` is updated only when the actual content changes (not frontmatter-only changes)
  * - All dates are stored in UTC format
  *
  * Usage: node scripts/update-blog-dates.js <file1> [file2] ...
@@ -15,6 +15,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { execSync } from "node:child_process";
 
 const BLOG_PATH = "src/data/blog";
 
@@ -44,6 +45,48 @@ function extractFrontmatter(content) {
     frontmatter: match[1],
     restOfFile: content.slice(match[0].length),
   };
+}
+
+function getContentOnly(content) {
+  const parsed = extractFrontmatter(content);
+  return parsed ? parsed.restOfFile : content;
+}
+
+function getGitRelativePath(absolutePath) {
+  try {
+    const gitRoot = execSync("git rev-parse --show-toplevel", {
+      encoding: "utf-8",
+    }).trim();
+    return path.relative(gitRoot, absolutePath);
+  } catch {
+    return null;
+  }
+}
+
+function getHeadContent(absolutePath) {
+  const relativePath = getGitRelativePath(absolutePath);
+  if (!relativePath) return null;
+
+  try {
+    return execSync(`git show HEAD:"${relativePath}"`, {
+      encoding: "utf-8",
+    });
+  } catch {
+    // File doesn't exist in HEAD (new file)
+    return null;
+  }
+}
+
+function hasContentChanged(currentContent, absolutePath) {
+  const headContent = getHeadContent(absolutePath);
+
+  // New file - content has "changed" (it's new)
+  if (headContent === null) return true;
+
+  const currentContentOnly = getContentOnly(currentContent);
+  const headContentOnly = getContentOnly(headContent);
+
+  return currentContentOnly !== headContentOnly;
 }
 
 const hasDraftFlag = frontmatter => /^draft:\s*true\s*$/m.test(frontmatter);
@@ -119,6 +162,11 @@ function main() {
       }
 
       const isModification = hasPubDatetime(frontmatter);
+
+      if (isModification && !hasContentChanged(content, absolutePath)) {
+        Logger.info(`Skipping (frontmatter-only change): ${absolutePath}`);
+        return;
+      }
 
       const updatedFrontmatter = upsertDateField(
         frontmatter,
