@@ -27,7 +27,7 @@ export function GithubCard(props: { repo?: string }) {
         background-size: 180px 180px;
         border: 2px solid var(--color-border);
         border-radius: 12px;
-        padding: 20px;
+        padding: 16px;
         margin: 24px 0;
         transition: all 0.3s ease;
         color: var(--color-foreground);
@@ -51,8 +51,8 @@ export function GithubCard(props: { repo?: string }) {
           style: `
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
+            gap: 8px;
+            margin-bottom: 8px;
           `
             .replace(/\s+/g, " ")
             .trim(),
@@ -93,7 +93,7 @@ export function GithubCard(props: { repo?: string }) {
                 {
                   style: `
                     font-weight: 600;
-                    font-size: 18px;
+                    font-size: 16px;
                     color: var(--color-heading);
                     word-break: break-word;
                     overflow: hidden;
@@ -113,11 +113,11 @@ export function GithubCard(props: { repo?: string }) {
         "p.github-card-description",
         {
           style: `
-            margin: 12px 0;
+            margin: 4px 0 0 0;
             font-size: 14px;
             color: var(--color-foreground);
             line-height: 1.5;
-            opacity: 0.9;
+            opacity: 0.8;
           `
             .replace(/\s+/g, " ")
             .trim(),
@@ -132,7 +132,7 @@ export function GithubCard(props: { repo?: string }) {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-top: 16px;
+            margin-top: 8px;
             flex-wrap: wrap;
             font-size: 13px;
             color: var(--color-foreground);

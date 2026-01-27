@@ -7,6 +7,7 @@ import rehypeComponents from "rehype-components";
 import rehypeSlug from "rehype-slug";
 import remarkDirective from "remark-directive";
 import { GithubCard } from "./src/components/rehype/GithubCard";
+import { WebsiteCard } from "./src/components/rehype/WebsiteCard";
 import { SITE } from "./src/config";
 import {
   DEFAULT_LOCALE,
@@ -41,6 +42,7 @@ export default defineConfig({
         {
           components: {
             github: GithubCard,
+            website: WebsiteCard,
           },
         },
       ],
