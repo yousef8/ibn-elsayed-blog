@@ -2,7 +2,7 @@
 title: "How I Made My Blog with Astro.js"
 description: "My journey to creating a blog in Arabic"
 pubDatetime: 2026-01-25T22:27:19.695Z
-modDatetime: 2026-01-25T23:12:51.197Z
+modDatetime: 2026-01-27T15:09:31.443Z
 coverImage: /src/assets/covers/how_i_made_my_blog_with_astro.jpg
 ogImage: /src/assets/covers/how_i_made_my_blog_with_astro.jpg
 tags:
@@ -58,7 +58,11 @@ Unfortunately, the theme didn’t support Arabic in any way, and that was the re
 
   - And Tailwind supports direction-aware utilities starting from version 3.3
 
-Thankfully, I made all the changes above. They were pretty big, and they exhausted me until I finally finished them. I felt it would be a shame to keep them to myself, so I wanted to publish them so anyone after me wouldn’t have to reinvent the wheel. So I published my AstroPaper theme with i18n support on the [theme store](https://astro.build/themes/details/astropaper-i18n/). And الحمد لله, it has reached **37 stars** so far on GitHub.
+Thankfully, I made all the changes above. They were pretty big, and they exhausted me until I finally finished them. I felt it would be a shame to keep them to myself, so I wanted to publish them so anyone after me wouldn’t have to reinvent the wheel. So I published my AstroPaper theme with i18n support on the astro theme store.
+
+::website{url="https://astro.build/themes/details/astropaper-i18n/"}
+
+And my github repo has reached **37 stars** so far! 🎉
 
 ::github{repo="yousef8/astro-paper-i18n"}
 
